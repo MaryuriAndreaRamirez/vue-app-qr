@@ -1,18 +1,22 @@
 <template>
   <div class="home">
     <img alt="Vue logo" src="../assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
+    <h1>Aplicación Qr</h1>
+
+    <!-- <button @click="goToDaybook" class="btn btn-primary">Primary</button>
+    <button @click="goToDaybook" class="btn btn-secondary">Secondary</button> -->
+    <button @click="$router.push({ name: 'appQr', params: { id: 500 }})" class="btn btn-success">Succes</button>
+
   </div>
 </template>
 
 <script>
-// @ is an alias to /src
-import HelloWorld from '@/components/HelloWorld.vue'
-
 export default {
-  name: 'Home',
-  components: {
-    HelloWorld
+  methods: {
+    goToAppQr() {
+      this.$router.push({ name: 'appQr' })
+    }
   }
 }
 </script>
+
