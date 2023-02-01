@@ -1,7 +1,7 @@
 import axios from 'axios'
 
 const appQrApi = axios.create({
-    // baseURL: 'https://vue-demos-86f94-default-rtdb.firebaseio.com'
+    baseURL: 'https://logirastreo.com/ws_app/serviciosqr'
 })
 
 export default appQrApi

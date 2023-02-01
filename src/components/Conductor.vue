@@ -1,21 +1,27 @@
 <template>
-    <!-- <div class="px-2 pt-2">
-        <h1>Detalle del vehículo SOR203</h1>
 
-        <h4>Nombre de la empresa:</h4>
-    </div>  -->
-
-    <div class="container px-4">
+    <div 
+        class="container px-4" 
+        v-if="entradaReal">
         <div class="row gx-5">
             <div class="col">
-                <div class="p-3 border bg-light">
-                    <h1><b>Información Conductor</b></h1> 
+                <div class="p-3 divComponent">
+                    <h1 class="subtitulos">
+                        <big>
+                            <img src="@/assets/icons/viaje.png" 
+                                 alt="Logo"
+                                 height="28"
+                                 class="d-inline-block align-text-top mx-3">
+                            <b>Información del Viaje</b>
+                        </big>
+                    </h1> 
 
-                    <p><b>Último despacho:</b> 2022-01-17 12:0 PM</p>
-                    <p><b>Despachador:</b> Cristian Velez</p>
-                    <p><b>Conductor:</b> Mario Hernandez</p>
-                    <p><b>Cédula:</b> 1067895126</p>
-                    <p><b>Ruta:</b> Ruta Prueba</p>
+                    <p><b>Último despacho: </b> {{ entradaReal.inicio }}</p>
+                    <p><b>Despachador: </b>{{ entradaReal.nombreDespachador }}</p>
+                    <p><b>Conductor: </b>{{ entradaReal.nombreConductor }}</p>
+                    <p><b>Cédula Conductor: </b>{{ entradaReal.cedulaConductor }}</p>
+                    <p><b>Ruta: </b>{{ entradaReal.ruta }}</p>
+                    <p><b>Pasajeros: </b>{{ entradaReal.pasajeros }}</p>
 
                 </div>
             </div>
@@ -23,6 +29,45 @@
     </div>
 
 </template>
+
+<script>
+import { mapGetters } from 'vuex'
+
+export default {
+    props: {
+        entrada: {
+            type: Object
+        },
+    },
+    data() {
+        return {
+            term: this.$route.params.id,
+            entradaReal: null
+        }    
+    },
+    computed: {
+        ...mapGetters('storeGlobal', ['getEntradaPorId', 'getEntrada']),
+        entradasByTerm() {
+            return this.getEntrada( this.term )    
+        },
+    },
+    methods: {
+        loadEntrada() {
+            const entry = this.getEntradaPorId( this.term )
+
+            if( !entry ) {
+                this.$router.push({ name: 'About' })
+            } else {
+                this.entradaReal = entry
+            }
+            
+        }
+    },
+    created() { 
+        setTimeout(() => this.loadEntrada(), 600);
+    },
+}
+</script>
 
 
 <style lang="scss" scoped>

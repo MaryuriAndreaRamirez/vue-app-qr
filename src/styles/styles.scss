@@ -12,3 +12,21 @@ $theme-colors: (
 
 
 @import 'node_modules/bootstrap/scss/bootstrap.scss';
+
+
+body {
+    --bs-bg-opacity: 0.1;
+    background-color: rgba(var(--bs-primary-rgb), var(--bs-bg-opacity)) !important;
+    font-family: Big Caslon;
+}
+
+.subtitulos {
+    background: linear-gradient(to right, rgba(58,162,215,1) 0%, rgba(47,98,164,1) 100%);
+    color: whitesmoke;
+    border-radius: 4px;
+}
+
+.divComponent {
+    border-style: ridge; 
+    Background-color: #FBFCFC;
+}
